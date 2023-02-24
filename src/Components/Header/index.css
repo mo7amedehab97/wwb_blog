@@ -1,0 +1,47 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #dfdfdf7e;
+    padding: 20px 120px;
+    border-bottom: 1px solid #b6b3b3;
+}
+
+nav h2 {
+    color: #414141c4;
+}
+
+.add_post_btn,
+.login_btn {
+    background-color: transparent;
+    padding: 0 2rem;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+}
+
+.add_post_btn {
+    border: 1px solid #34d457;
+    color: #34d457;
+
+
+}
+
+.login_btn {
+
+    border: 1px solid #3467d4;
+    color: #3467d4;
+
+}
+
+.login_btn:hover {
+    background-color: #3467d4;
+    color: #fff;
+}
+
+.add_post_btn:hover {
+    background-color: #34d457;
+    color: #fff;
+}
+

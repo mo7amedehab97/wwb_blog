@@ -1,0 +1,41 @@
+.modal_container {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+
+.modal_innder_container {
+    position: fixed;
+    background-color: #ddd;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 35%;
+    padding: 16px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.modal_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal_header img {
+    width: 30px;
+}
+
+/* .login_modal_container {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    right: 0;
+    width: 100;
+} */

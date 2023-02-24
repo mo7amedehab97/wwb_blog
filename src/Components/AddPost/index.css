@@ -1,0 +1,11 @@
+.add_post_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.add_post_container textarea {
+    border: 1px solid #ddd;
+    padding: 16px;
+}
