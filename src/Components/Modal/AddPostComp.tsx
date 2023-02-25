@@ -1,12 +1,35 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, Dispatch, SetStateAction } from "react";
+import CustomInput from "../CustomInput/CustomInput";
+import { ILog } from "./Modal";
 
-interface AddPostCompProps {}
+interface AddPostCompProps {
+  setLoginData: Dispatch<SetStateAction<ILog>>;
+  loginData: ILog;
+}
 
-const AddPostComp: FunctionComponent<AddPostCompProps> = () => {
+const AddPostComp: FunctionComponent<AddPostCompProps> = ({
+  loginData,
+  setLoginData,
+}) => {
   return (
-    <>
-      <p>add post comp</p>
-    </>
+    <div className="inputs_holder">
+      <CustomInput
+        inputValue={"title"}
+        placeholderValue={"Title"}
+        inputType={"text"}
+        changeFunction={(e: any) => {
+          setLoginData({ ...loginData, name: e.target.value });
+        }}
+      />
+      <CustomInput
+        inputValue={"body"}
+        placeholderValue={"body"}
+        inputType={"text"}
+        changeFunction={(e: any) => {
+          setLoginData({ ...loginData, name: e.target.value });
+        }}
+      />
+    </div>
   );
 };
 

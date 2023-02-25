@@ -1,12 +1,15 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
 import Trash from "../../assets/trash-svgrepo-com.svg";
 import Edit from "../../assets/edit-3-svgrepo-com.svg";
+import { PostsContext } from "../../Context/PostContext";
 interface PostCompProps {
-  title: String;
-  body: String;
+  title: string;
+  body: string;
+  id: number;
 }
 
-const PostComp: FunctionComponent<PostCompProps> = ({ title, body }) => {
+const PostComp: FunctionComponent<PostCompProps> = ({ title, body, id }) => {
+  const { removePost } = useContext(PostsContext);
   return (
     <section className="post_comp_container">
       <div className="post_manipulate_section">
@@ -14,7 +17,9 @@ const PostComp: FunctionComponent<PostCompProps> = ({ title, body }) => {
           <h3>{title}</h3>
         </div>
         <div className="post_icons">
-          <img src={Trash} alt="" />
+          <button onClick={() => removePost(id)}>
+            <img src={Trash} alt="" />
+          </button>
           <img src={Edit} alt="" />
         </div>
       </div>

@@ -1,0 +1,21 @@
+.custom_input_element {
+    margin-top: 1.5rem;
+    padding: 8px 12px;
+    background-color: #34d457;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+}
+
+.custom_input_element:hover {
+    background-color: transparent;
+    border: 1px solid #34d457;
+    color: #34d457;
+
+}

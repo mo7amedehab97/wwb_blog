@@ -1,12 +1,18 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import "./Index.css";
 import Cancel from "../../assets/Cancel.svg";
 import LoginComp from "./LoginComp";
 import AddPostComp from "./AddPostComp";
+import CustomButton from "../CustomButton/CustomButton";
 interface ModalProps {
-  modalName: String;
+  modalName: string;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+}
+export interface ILog {
+  userId: number;
+  name: string;
+  password: string;
 }
 
 const Modal: FunctionComponent<ModalProps> = ({
@@ -14,6 +20,12 @@ const Modal: FunctionComponent<ModalProps> = ({
   isOpen,
   setIsOpen,
 }) => {
+  const [loginData, setLoginData] = useState<ILog>({
+    userId: 0,
+    name: "",
+    password: "",
+  });
+
   const CloseModal = () => {
     setIsOpen(false);
   };
@@ -27,10 +39,14 @@ const Modal: FunctionComponent<ModalProps> = ({
           </button>
         </div>
         <div className="modal_body">
-          {modalName === "Login" ? <LoginComp /> : <AddPostComp />}
+          {modalName === "Login" ? (
+            <LoginComp loginData={loginData} setLoginData={setLoginData} />
+          ) : (
+            <AddPostComp loginData={loginData} setLoginData={setLoginData} />
+          )}
         </div>
         <div className="modal_footer">
-          <button>{modalName}</button>
+          <CustomButton buttonName={modalName} />
         </div>
       </div>
     </div>

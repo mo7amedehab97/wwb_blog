@@ -1,14 +1,15 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useEffect, useContext } from "react";
+import { PostsContext } from "../../Context/PostContext";
 import "./index.css";
 import PostComp from "./PostComp";
 
 const PostList: FunctionComponent = () => {
-  const [posts, setPosts] = useState([]);
+  const { fetchPosts, posts, isLoading } = useContext(PostsContext);
+
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => setPosts(data));
-  }, []);
+    fetchPosts();
+  }, [fetchPosts]);
+
   console.log(posts);
 
   return (
@@ -17,9 +18,13 @@ const PostList: FunctionComponent = () => {
         <h2>news feed</h2>
       </div>
       <div className="post_list_holder">
-        {posts.map(({ title, body, id }) => {
-          return <PostComp title={title} body={body} key={id} />;
-        })}
+        {isLoading ? (
+          <p>loading</p>
+        ) : (
+          posts?.map(({ title, body, id }) => {
+            return <PostComp title={title} body={body} key={id} id={id} />;
+          })
+        )}
       </div>
     </section>
   );
