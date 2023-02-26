@@ -1,16 +1,12 @@
 import { FunctionComponent, Dispatch, SetStateAction } from "react";
 import CustomInput from "../CustomInput/CustomInput";
-import { ILog } from "./Modal";
-
+import { IPosts } from "../../Context/PostContext";
 interface AddPostCompProps {
-  setLoginData: Dispatch<SetStateAction<ILog>>;
-  loginData: ILog;
+  setObj: Dispatch<SetStateAction<IPosts>>;
+  obj: IPosts;
 }
 
-const AddPostComp: FunctionComponent<AddPostCompProps> = ({
-  loginData,
-  setLoginData,
-}) => {
+const AddPostComp: FunctionComponent<AddPostCompProps> = ({ setObj, obj }) => {
   return (
     <div className="inputs_holder">
       <CustomInput
@@ -18,7 +14,7 @@ const AddPostComp: FunctionComponent<AddPostCompProps> = ({
         placeholderValue={"Title"}
         inputType={"text"}
         changeFunction={(e: any) => {
-          setLoginData({ ...loginData, name: e.target.value });
+          setObj({ ...obj, title: e.target.value });
         }}
       />
       <CustomInput
@@ -26,7 +22,7 @@ const AddPostComp: FunctionComponent<AddPostCompProps> = ({
         placeholderValue={"body"}
         inputType={"text"}
         changeFunction={(e: any) => {
-          setLoginData({ ...loginData, name: e.target.value });
+          setObj({ ...obj, body: e.target.value });
         }}
       />
     </div>

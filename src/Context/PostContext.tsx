@@ -12,6 +12,8 @@ export interface PostsContextData {
   isLoading: boolean;
   fetchPosts: () => void;
   removePost: (postId: number) => void;
+  addPost: (value: IPosts) => void;
+  updatePost: (postId: number, obj: IPosts) => void;
 }
 
 export const postsContextDefaultValue: PostsContextData = {
@@ -19,6 +21,8 @@ export const postsContextDefaultValue: PostsContextData = {
   isLoading: false,
   fetchPosts: () => null,
   removePost: () => null,
+  addPost: () => null,
+  updatePost: () => null,
 };
 
 export const PostsContext = createContext<PostsContextData>(
@@ -63,15 +67,57 @@ function usePostsContextValue(): PostsContextData {
     },
     [setPosts, posts]
   );
+  const addPost = useCallback(
+    (obj: IPosts) => {
+      setIsLoading(true);
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          ...obj,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => setPosts([json, ...posts]))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    },
+    [posts]
+  );
 
+  const updatePost = useCallback((id: number, obj: IPosts) => {
+    setIsLoading(true);
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        title: obj.title,
+        body: obj.body,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log("item fetched");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
   return useMemo(
     () => ({
       posts,
       isLoading,
       fetchPosts,
       removePost,
+      addPost,
+      updatePost,
     }),
-    [posts, isLoading, fetchPosts, removePost]
+    [posts, isLoading, fetchPosts, removePost, addPost, updatePost]
   );
 }
 export default usePostsContextValue;

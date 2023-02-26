@@ -4,6 +4,7 @@ import Cancel from "../../assets/Cancel.svg";
 import LoginComp from "./LoginComp";
 import AddPostComp from "./AddPostComp";
 import CustomButton from "../CustomButton/CustomButton";
+import { IPosts } from "../../Context/PostContext";
 interface ModalProps {
   modalName: string;
   isOpen: boolean;
@@ -25,7 +26,12 @@ const Modal: FunctionComponent<ModalProps> = ({
     name: "",
     password: "",
   });
-
+  const [obj, setObj] = useState<IPosts>({
+    userId: 134754334,
+    title: "",
+    body: "",
+    id: 0,
+  });
   const CloseModal = () => {
     setIsOpen(false);
   };
@@ -42,11 +48,15 @@ const Modal: FunctionComponent<ModalProps> = ({
           {modalName === "Login" ? (
             <LoginComp loginData={loginData} setLoginData={setLoginData} />
           ) : (
-            <AddPostComp loginData={loginData} setLoginData={setLoginData} />
+            <AddPostComp obj={obj} setObj={setObj} />
           )}
         </div>
         <div className="modal_footer">
-          <CustomButton buttonName={modalName} />
+          <CustomButton
+            buttonName={modalName}
+            obj={obj}
+            setIsOpen={setIsOpen}
+          />
         </div>
       </div>
     </div>
