@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import "./Index.css";
 import Cancel from "../../assets/Cancel.svg";
 import LoginComp from "./LoginComp";
@@ -27,11 +27,12 @@ const Modal: FunctionComponent<ModalProps> = ({
     password: "",
   });
   const [obj, setObj] = useState<IPosts>({
-    userId: 134754334,
+    userId: Number(localStorage.getItem("userId")),
     title: "",
     body: "",
     id: 0,
   });
+
   const CloseModal = () => {
     setIsOpen(false);
   };

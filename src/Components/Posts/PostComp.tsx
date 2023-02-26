@@ -6,10 +6,17 @@ interface PostCompProps {
   title: string;
   body: string;
   id: number;
+  userId: number;
 }
 
-const PostComp: FunctionComponent<PostCompProps> = ({ title, body, id }) => {
+const PostComp: FunctionComponent<PostCompProps> = ({
+  title,
+  body,
+  id,
+  userId,
+}) => {
   const { removePost } = useContext(PostsContext);
+  const ID: number = Number(localStorage.getItem("userId"));
   return (
     <section className="post_comp_container">
       <div className="post_manipulate_section">
@@ -17,7 +24,13 @@ const PostComp: FunctionComponent<PostCompProps> = ({ title, body, id }) => {
           <h3>{title}</h3>
         </div>
         <div className="post_icons">
-          <button onClick={() => removePost(id)}>
+          <button
+            onClick={() => {
+              ID === userId
+                ? removePost(id)
+                : alert("you cant delete post never belong to you");
+            }}
+          >
             <img src={Trash} alt="" />
           </button>
           <img src={Edit} alt="" />

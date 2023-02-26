@@ -18,7 +18,11 @@ const LoginComp: FunctionComponent<LoginCompProps> = ({
         placeholderValue={"name"}
         inputType={"name"}
         changeFunction={(e: any) => {
-          setLoginData({ ...loginData, name: e.target.value });
+          setLoginData({
+            ...loginData,
+            name: e.target.value,
+            userId: Math.floor(Math.random() * 10) + 1,
+          });
         }}
       />
       <CustomInput

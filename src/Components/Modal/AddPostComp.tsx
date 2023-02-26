@@ -14,7 +14,11 @@ const AddPostComp: FunctionComponent<AddPostCompProps> = ({ setObj, obj }) => {
         placeholderValue={"Title"}
         inputType={"text"}
         changeFunction={(e: any) => {
-          setObj({ ...obj, title: e.target.value });
+          setObj({
+            ...obj,
+            title: e.target.value,
+            
+          });
         }}
       />
       <CustomInput

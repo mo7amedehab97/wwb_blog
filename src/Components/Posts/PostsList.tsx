@@ -22,8 +22,16 @@ const PostList: FunctionComponent = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          posts?.map(({ title, body, id }) => {
-            return <PostComp title={title} body={body} key={id} id={id} />;
+          posts?.map(({ title, body, id, userId }) => {
+            return (
+              <PostComp
+                title={title}
+                body={body}
+                key={body}
+                id={id}
+                userId={userId}
+              />
+            );
           })
         )}
       </div>

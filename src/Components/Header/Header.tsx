@@ -6,10 +6,11 @@ const Header: FunctionComponent = () => {
   const [isLogged, setIsLogged] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [nameModal, setModalName] = useState("");
-  // useEffect(() => {
-  //   return setIsLogged(false);
-  // }, []);
-
+  useEffect(() => {
+    const logged = localStorage.getItem("userId");
+    Number(logged) > 0 ? setIsLogged(true) : setIsLogged(false);
+  }, [isLogged, isOpen]);
+  console.log(isLogged, "hereeeeeeee");
   const Login = () => {
     setIsOpen(true);
     setModalName("Login");

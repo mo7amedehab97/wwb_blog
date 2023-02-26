@@ -16,7 +16,6 @@ const CustomButton: FunctionComponent<CustomButtonProps> = ({
   obj,
   setIsOpen,
   loginData,
-  setLoginData,
 }) => {
   const { addPost } = useContext(PostsContext);
   const handleAddPost = (obj: IPosts) => {
@@ -29,13 +28,17 @@ const CustomButton: FunctionComponent<CustomButtonProps> = ({
     }
   };
   const handleLogin = (obj: ILog) => {
-    if (obj.name === "" || obj.password.length === 0) {
-      alert("please fill all the required inputs");
+    const logged = localStorage.getItem("userId");
+    if (logged) {
+      console.log("looged ", logged);
     } else {
-      setLoginData({
-        ...loginData,
-        userId: Math.floor(Math.random() * 10) + 1,
-      });
+      if (obj.name === "" || obj.password.length === 0) {
+        alert("please fill all the required inputs");
+      } else {
+        console.log("seconde userId", obj.userId);
+        localStorage.setItem("userId", JSON.stringify(obj.userId));
+        setIsOpen(false);
+      }
     }
   };
   console.log(loginData);
