@@ -10,8 +10,6 @@ const PostList: FunctionComponent = () => {
     fetchPosts();
   }, [fetchPosts]);
 
-  console.log(posts);
-
   return (
     <section className="post_list_container">
       <div className="post_list_tilte">

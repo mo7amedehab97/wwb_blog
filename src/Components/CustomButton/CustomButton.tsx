@@ -24,24 +24,20 @@ const CustomButton: FunctionComponent<CustomButtonProps> = ({
     } else {
       addPost(obj);
       setIsOpen(false);
-      console.log("one tow three ");
     }
   };
   const handleLogin = (obj: ILog) => {
     const logged = localStorage.getItem("userId");
     if (logged) {
-      console.log("looged ", logged);
     } else {
       if (obj.name === "" || obj.password.length === 0) {
         alert("please fill all the required inputs");
       } else {
-        console.log("seconde userId", obj.userId);
         localStorage.setItem("userId", JSON.stringify(obj.userId));
         setIsOpen(false);
       }
     }
   };
-  console.log(loginData);
 
   return (
     <button

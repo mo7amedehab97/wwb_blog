@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import "./Index.css";
 import Cancel from "../../assets/Cancel.svg";
 import LoginComp from "./LoginComp";

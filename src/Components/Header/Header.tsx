@@ -10,7 +10,6 @@ const Header: FunctionComponent = () => {
     const logged = localStorage.getItem("userId");
     Number(logged) > 0 ? setIsLogged(true) : setIsLogged(false);
   }, [isLogged, isOpen]);
-  console.log(isLogged, "hereeeeeeee");
   const Login = () => {
     setIsOpen(true);
     setModalName("Login");

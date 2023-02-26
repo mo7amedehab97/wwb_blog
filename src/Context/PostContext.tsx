@@ -88,26 +88,29 @@ function usePostsContextValue(): PostsContextData {
     [posts]
   );
 
-  const updatePost = useCallback((id: number, obj: IPosts) => {
-    setIsLoading(true);
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        title: obj.title,
-        body: obj.body,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log("item fetched");
+  const updatePost = useCallback(
+    (id: number, obj: IPosts) => {
+      setIsLoading(true);
+      fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          ...obj,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+        .then((response) => response.json())
+        .then((json) => {
+          const Filterd = posts.filter((data) => data.id !== id);
+          setPosts([json, ...Filterd]);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    },
+    [posts]
+  );
   return useMemo(
     () => ({
       posts,
