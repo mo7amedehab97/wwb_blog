@@ -56,6 +56,8 @@ const Modal: FunctionComponent<ModalProps> = ({
             buttonName={modalName}
             obj={obj}
             setIsOpen={setIsOpen}
+            loginData={loginData}
+            setLoginData={setLoginData}
           />
         </div>
       </div>

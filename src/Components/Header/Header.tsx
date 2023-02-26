@@ -3,7 +3,7 @@ import Modal from "../Modal/Modal";
 import "./index.css";
 
 const Header: FunctionComponent = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [nameModal, setModalName] = useState("");
   // useEffect(() => {
